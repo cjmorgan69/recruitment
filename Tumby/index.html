@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteer with Us | Tumby Bay Ambulance Team</title>
+<style>
+  :root{
+    --green:#15803d;
+    --green-dark:#14532d;
+    --green-darker:#0c3320;
+    --green-light:#dcfce7;
+    --green-accent:#22c55e;
+    --ink:#14201a;
+    --grey:#52635a;
+    --light:#f1f7f3;
+    --white:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.6;background:var(--white);}
+  a{color:var(--green);text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1100px;margin:0 auto;padding:0 20px;}
+  .btn{display:inline-block;background:var(--green);color:#fff;padding:14px 30px;border-radius:6px;font-weight:600;transition:.2s;border:2px solid var(--green);cursor:pointer;}
+  .btn:hover{background:var(--green-dark);border-color:var(--green-dark);}
+  .btn-outline{background:transparent;color:#fff;border:2px solid #fff;}
+  .btn-outline:hover{background:#fff;color:var(--green-dark);}
+
+  /* Top bar */
+  .topbar{background:var(--green-dark);color:#fff;font-size:.85rem;}
+  .topbar .container{display:flex;justify-content:space-between;align-items:center;padding:8px 20px;flex-wrap:wrap;gap:8px;}
+  .topbar a{color:#fff;font-weight:600;}
+
+  /* Header / Nav */
+  header{background:#fff;border-bottom:1px solid #e0ebe4;position:sticky;top:0;z-index:50;}
+  header .container{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--green-dark);font-size:1.1rem;}
+  .logo .cross{background:var(--green);color:#fff;width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:900;}
+  nav ul{display:flex;gap:24px;list-style:none;}
+  nav a{color:var(--ink);font-weight:600;font-size:.95rem;}
+  nav a:hover{color:var(--green);}
+
+  /* Hero */
+  .hero{position:relative;color:#fff;}
+  .hero img{width:100%;height:520px;object-fit:cover;}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,51,32,.85),rgba(20,83,45,.35));display:flex;align-items:center;}
+  .hero-content{max-width:620px;}
+  .hero h1{font-size:2.8rem;line-height:1.15;margin-bottom:16px;text-shadow:0 2px 8px rgba(0,0,0,.3);}
+  .hero p{font-size:1.2rem;margin-bottom:26px;text-shadow:0 1px 4px rgba(0,0,0,.4);}
+  .hero .btn{margin-right:12px;margin-bottom:10px;}
+
+  /* Sections */
+  section{padding:64px 0;}
+  .section-light{background:var(--light);}
+  .section-green{background:var(--green-dark);color:#fff;}
+  h2{font-size:2rem;color:var(--green-dark);margin-bottom:18px;}
+  .section-green h2{color:#fff;}
+  h3{font-size:1.3rem;margin-bottom:10px;color:var(--ink);}
+  .lead{font-size:1.15rem;color:var(--grey);max-width:780px;margin-bottom:20px;}
+
+  .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
+  .two-col img{border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.12);}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+  .stat{background:#fff;border-radius:12px;padding:28px 16px;box-shadow:0 6px 18px rgba(0,0,0,.06);}
+  .stat .num{font-size:2.4rem;font-weight:800;color:var(--green);}
+  .stat .label{color:var(--grey);font-weight:600;font-size:.95rem;}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:30px;}
+  .step{background:#fff;border-top:4px solid var(--green);border-radius:10px;padding:24px;box-shadow:0 6px 18px rgba(0,0,0,.06);}
+  .step .n{width:38px;height:38px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:12px;}
+
+  /* Cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08);}
+  .card .body{padding:22px;}
+  .card .body h3{color:var(--green-dark);}
+
+  /* ===== TESTIMONIAL CAROUSEL ===== */
+  .carousel{position:relative;max-width:880px;margin:30px auto 0;overflow:hidden;border-radius:16px;}
+  .carousel-track{display:flex;transition:transform .5s ease;cursor:grab;}
+  .carousel-track:active{cursor:grabbing;}
+  .slide{min-width:100%;box-sizing:border-box;padding:50px 60px;display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;}
+  .slide img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:5px solid var(--green-light);box-shadow:0 8px 20px rgba(20,83,45,.18);margin-bottom:20px;user-select:none;-webkit-user-drag:none;}
+  .slide .quote-text{font-size:1.15rem;font-style:italic;color:#2b3a32;max-width:620px;margin-bottom:18px;position:relative;}
+  .slide .quote-text::before{content:"\201C";font-size:3rem;color:var(--green-accent);line-height:0;position:relative;top:18px;margin-right:4px;}
+  .slide .name{font-weight:800;color:var(--green-dark);font-size:1.15rem;}
+  .slide .role{color:var(--green);font-weight:600;font-size:.95rem;}
+  .car-btn{position:absolute;top:50%;transform:translateY(-50%);background:var(--green-dark);color:#fff;border:none;width:46px;height:46px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5;opacity:.85;transition:.2s;}
+  .car-btn:hover{opacity:1;background:var(--green);}
+  .car-prev{left:10px;}
+  .car-next{right:10px;}
+  .dots{display:flex;justify-content:center;gap:10px;margin-top:22px;}
+  .dot{width:12px;height:12px;border-radius:50%;background:#c5d6cc;border:none;cursor:pointer;transition:.2s;}
+  .dot.active{background:var(--green);transform:scale(1.25);}
+
+  /* FAQ */
+  details{background:#fff;border:1px solid #e0ebe4;border-radius:8px;margin-bottom:12px;padding:0 20px;}
+  summary{cursor:pointer;font-weight:700;padding:18px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";font-size:1.4rem;color:var(--green);}
+  details[open] summary::after{content:"\2013";}
+  details p{padding-bottom:18px;color:var(--grey);}
+
+  /* CTA band */
+  .cta{background:var(--green);color:#fff;text-align:center;}
+  .cta h2{color:#fff;}
+  .cta p{font-size:1.15rem;max-width:680px;margin:0 auto 26px;opacity:.95;}
+
+  /* Contact */
+  .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center;}
+  .contact-grid .ic{font-size:2rem;}
+
+  /* Footer */
+  footer{background:var(--green-darker);color:#bcd3c5;padding:40px 0;font-size:.9rem;}
+  footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+  footer a{color:#86e0a6;}
+  .disclaimer{background:#fff8e1;color:#7a5b00;text-align:center;padding:10px;font-size:.85rem;font-weight:600;}
+
+  @media(max-width:860px){
+    nav{display:none;}
+    .two-col{grid-template-columns:1fr;}
+    .stats,.steps,.cards,.contact-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2rem;}
+    .hero img{height:440px;}
+    .slide{padding:40px 30px;}
+    .car-btn{width:38px;height:38px;font-size:1.1rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="disclaimer">PROTOTYPE / MOCK-UP — images are AI-generated placeholders for demonstration only.</div>
+
+<div class="topbar">
+  <div class="container">
+    <span>Tumby Bay Team Enquiries: 1300 175 584</span>
+    <span>For emergencies always call <strong>000</strong> &nbsp;|&nbsp; <a href="#apply">Apply Now →</a></span>
+  </div>
+</div>
+
+<header>
+  <div class="container">
+    <div class="logo"><span class="cross">✚</span> Tumby Bay Ambulance Volunteers</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#how">How to Join</a></li>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#stories">Volunteer Stories</a></li>
+        <li><a href="#faq">FAQs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <img src="https://cdn.simtheory.ai/image/upload/v1781177292/user_2567/st-john-ambulance-coast_5c46aa58.png" alt="Tumby Bay ambulance volunteers by the coast">
+  <div class="hero-overlay">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Become a Tumby Bay Ambulance Volunteer</h1>
+        <p>Our volunteers are the face of SA Ambulance on the Eyre Peninsula. Join the team that keeps our coastal community safe — right here in Tumby Bay.</p>
+        <a href="#apply" class="btn">Apply Now</a>
+        <a href="#about" class="btn btn-outline">Find Out More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container two-col">
+    <div>
+      <h2>Have you ever thought about volunteering close to home?</h2>
+      <p class="lead">When you join the Tumby Bay team, you become part of the SAAS family and an integral member of your local community.</p>
+      <p>Across regional South Australia, more than 1,200 volunteers in over 70 teams provide professional emergency ambulance and patient transfer services to their communities. Our Tumby Bay team is one of them — supporting locals from Lipson to Port Neill and everyone in between.</p>
+      <p style="margin-top:14px;"><strong>We are currently recruiting volunteers for the Tumby Bay station.</strong> You could be our next ambulance volunteer.</p>
+      <p style="margin-top:18px;"><a href="#apply" class="btn">Start Your Application</a></p>
+    </div>
+    <div>
+      <img src="https://cdn.simtheory.ai/image/upload/v1781177261/user_2567/ambulance-volunteers_1055d123.png" alt="Volunteer checking ambulance equipment">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section-light">
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><div class="num">1,200+</div><div class="label">Volunteers across regional SA</div></div>
+      <div class="stat"><div class="num">70+</div><div class="label">Volunteer teams statewide</div></div>
+      <div class="stat"><div class="num">17+</div><div class="label">Minimum age to join</div></div>
+      <div class="stat"><div class="num">$0</div><div class="label">Cost — training is free</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO JOIN -->
+<section id="how">
+  <div class="container">
+    <h2>How to join the Tumby Bay team</h2>
+    <p class="lead">Volunteering becomes part of your lifestyle. Rosters and training are flexible and designed around you, so you can progress at a pace you're comfortable with.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Apply online</h3><p>Submit your application or give the Volunteer Support Unit a call. No medical experience needed.</p></div>
+      <div class="step"><div class="n">2</div><h3>Local chat</h3><p>A Tumby Bay team leader will call you to talk about availability and what to expect.</p></div>
+      <div class="step"><div class="n">3</div><h3>Train with us</h3><p>Complete accredited, fully-funded training — mostly on evenings and weekends.</p></div>
+      <div class="step"><div class="n">4</div><h3>Join the roster</h3><p>Attend emergency and non-emergency calls and become a trusted local responder.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section id="training" class="section-light">
+  <div class="container">
+    <h2>Your training is free</h2>
+    <p class="lead">No experience? No problem. Once you sign up, SA Ambulance Service (a Registered Training Organisation, RTO 0264) provides everything you need to become a volunteer ambulance assistant, responder or officer.</p>
+    <div class="cards">
+      <div class="card"><div class="body"><h3>Certificate II</h3><p>HLT21020 Certificate II in Medical Service First Response — your first step into emergency care.</p></div></div>
+      <div class="card"><div class="body"><h3>Certificate IV</h3><p>HLT41120 Certificate IV in Health Care — develop advanced patient assessment and care skills.</p></div></div>
+      <div class="card"><div class="body"><h3>Ongoing support</h3><p>Regular workshops, theory and hands-on practice so you always feel confident on shift.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIAL CAROUSEL ===== -->
+<section id="stories" class="section-green">
+  <div class="container">
+    <h2 style="text-align:center;">Meet our volunteers</h2>
+    <p class="lead" style="color:#cfe6d8;margin:0 auto 10px;text-align:center;">Real reasons local volunteers keep coming back, shift after shift. Swipe to hear their stories.</p>
+
+    <div class="carousel" id="carousel">
+      <div class="carousel-track" id="track">
+
+        <div class="slide">
+          <img src="https://cdn.simtheory.ai/image/upload/v1781177291/user_2567/sa-ambulance-volunteer_d4ba87eb.png" alt="Steve">
+          <p class="quote-text">Volunteering helped me integrate into the community, and as a farmer, it has also allowed me to help people. I believe if I can make volunteering with SAAS work around a busy work schedule, others can too!</p>
+          <div class="name">Steve</div>
+          <div class="role">Volunteer Ambulance Officer · Tumby Bay</div>
+        </div>
+
+        <div class="slide">
+          <img src="https://cdn.simtheory.ai/image/upload/v1781177291/user_2567/smiling-volunteer-beach_0ebd5073.png" alt="Morgan">
+          <p class="quote-text">I cannot recommend volunteering with SAAS highly enough. The training, the skills learnt, the opportunities are endless and can be done at your own pace.</p>
+          <div class="name">Morgan</div>
+          <div class="role">Volunteer Ambulance Responder · Eyre Peninsula</div>
+        </div>
+
+        <div class="slide">
+          <img src="https://cdn.simtheory.ai/image/upload/v1781177294/user_2567/st-john-ambulance-volunteer_120766cf.png" alt="Nicolle">
+          <p class="quote-text">I continue to volunteer because of the friendships I have made and the community I have built for myself. I value the strong sense of family within my local team, the high-quality training, and the meaningful interactions I have with patients.</p>
+          <div class="name">Nicolle</div>
+          <div class="role">Volunteer Ambulance Officer · Tumby Bay</div>
+        </div>
+
+        <div class="slide">
+          <img src="https://cdn.simtheory.ai/image/upload/v1781177298/user_2567/st-john-ambulance-volunteer_17c3b2f8.png" alt="Jake">
+          <p class="quote-text">Joining SAAS has given me the chance to learn life-saving skills and stay calm in high-pressure situations. Every shift is different, and there's an incredible sense of fulfillment in knowing my training can make a real difference in someone's worst moment.</p>
+          <div class="name">Jake</div>
+          <div class="role">Volunteer Ambulance Assistant · Tumby Bay</div>
+        </div>
+
+      </div>
+      <button class="car-btn car-prev" id="prevBtn" aria-label="Previous">&#10094;</button>
+      <button class="car-btn car-next" id="nextBtn" aria-label="Next">&#10095;</button>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section-light">
+  <div class="container">
+    <h2>Frequently asked questions</h2>
+    <p class="lead">Becoming a volunteer ambulance officer is rewarding for you and your community. Here are the questions we hear most often.</p>
+
+    <details open><summary>How do I apply to become a volunteer?</summary><p>Click the "Apply Now" button to start your application online, or call the Volunteer Support Unit on 1300 175 584 or email SAASVolunteer@sa.gov.au. They'll be happy to have a chat about the Tumby Bay team.</p></details>
+    <details><summary>Do I have to pay for my ambulance training?</summary><p>No. Once you sign up, we provide accredited training free of charge — leading to a Certificate II in Medical Service First Response or a Certificate IV in Health Care. SA Ambulance Service is a Registered Training Organisation (RTO 0264).</p></details>
+    <details><summary>I don't have any medical experience. Can I still apply?</summary><p>Absolutely. You don't need any medical experience or training to become a volunteer recruit. We provide all the training and plenty of support so you feel confident with your skills.</p></details>
+    <details><summary>What age do I need to be?</summary><p>To join as an operational volunteer you must be over 17. There's no maximum age — as long as you're fit, healthy and able to meet our medical requirements.</p></details>
+    <details><summary>Can I volunteer if I work full time?</summary><p>Yes, if you have the time. Many of our volunteers work full time in another field. Operational training is generally held on weekends or evenings. You might also talk to your employer about supporting you to respond to calls from work.</p></details>
+  </div>
+</section>
+
+<!-- APPLY CTA -->
+<section id="apply" class="cta">
+  <div class="container">
+    <h2>You could be our next Tumby Bay ambulance volunteer</h2>
+    <p>Rosters and training are flexible and designed around you. Join a team that makes a real difference, right here on the Eyre Peninsula.</p>
+    <a href="#contact" class="btn btn-outline">Apply Now</a>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="container two-col">
+    <div>
+      <h2>Out in the community</h2>
+      <p>The Tumby Bay team is committed to engaging with our community and attends as many local events as possible — from the Tumby Bay shows and school visits to country fairs.</p>
+      <p style="margin-top:12px;">Would you like us at your event? Get in touch and we'll do our best to be there.</p>
+      <p style="margin-top:12px;">For children aged 4 to 11, there's also a fun educational film about what happens when you call Triple Zero (000).</p>
+    </div>
+    <div>
+      <img src="https://cdn.simtheory.ai/image/upload/v1781177315/user_2567/ambulance-volunteers-child_81b01b6b.png" alt="Volunteers at a community event">
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-light">
+  <div class="container">
+    <h2 style="text-align:center;">Volunteering enquiries</h2>
+    <p class="lead" style="margin:0 auto 36px;text-align:center;">Want to find out more about joining the Tumby Bay team? Reach out — we'd love to hear from you.</p>
+    <div class="contact-grid">
+      <div><div class="ic">📍</div><h3>Tumby Bay Station</h3><p>3 Wibberley Street<br>Tumby Bay, SA 5605</p></div>
+      <div><div class="ic">📞</div><h3>Call us</h3><p>1300 175 584<br>(Volunteer Support Unit)</p></div>
+      <div><div class="ic">✉️</div><h3>Email us</h3><p><a href="mailto:SAASVolunteer@sa.gov.au">SAASVolunteer@sa.gov.au</a></p></div>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="#" class="btn">Apply Now</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <strong style="color:#fff;">Tumby Bay Ambulance Volunteers</strong><br>
+      Part of SA Ambulance Service · Eyre Peninsula
+    </div>
+    <div>
+      For emergencies always call <strong style="color:#fff;">000</strong><br>
+      Enquiries: 1300 175 584
+    </div>
+    <div style="opacity:.7;">
+      Prototype concept page — not an official SAAS website.<br>
+      AI-generated placeholder imagery.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Swiping Testimonial Carousel =====
+  const track = document.getElementById('track');
+  const slides = Array.from(track.children);
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dotsWrap = document.getElementById('dots');
+  let index = 0;
+  let autoTimer;
+
+  // build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    d.addEventListener('click', () => { goTo(i); resetAuto(); });
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function goTo(i){
+    index = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    dots.forEach((d, k) => d.classList.toggle('active', k === index));
+  }
+  function next(){ goTo(index + 1); }
+  function prev(){ goTo(index - 1); }
+
+  nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+  prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+
+  function startAuto(){ autoTimer = setInterval(next, 5000); }
+  function resetAuto(){ clearInterval(autoTimer); startAuto(); }
+  startAuto();
+
+  // ===== Drag / swipe support =====
+  let startX = 0, isDown = false, deltaX = 0;
+  const carousel = document.getElementById('carousel');
+
+  function dragStart(x){ isDown = true; startX = x; deltaX = 0; track.style.transition = 'none'; clearInterval(autoTimer); }
+  function dragMove(x){
+    if(!isDown) return;
+    deltaX = x - startX;
+    track.style.transform = 'translateX(calc(' + (-index * 100) + '% + ' + deltaX + 'px))';
+  }
+  function dragEnd(){
+    if(!isDown) return;
+    isDown = false;
+    track.style.transition = 'transform .5s ease';
+    if(deltaX < -60) next();
+    else if(deltaX > 60) prev();
+    else goTo(index);
+    startAuto();
+  }
+
+  // Mouse
+  carousel.addEventListener('mousedown', e => dragStart(e.clientX));
+  window.addEventListener('mousemove', e => dragMove(e.clientX));
+  window.addEventListener('mouseup', dragEnd);
+  // Touch
+  carousel.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), {passive:true});
+  carousel.addEventListener('touchmove', e => dragMove(e.touches[0].clientX), {passive:true});
+  carousel.addEventListener('touchend', dragEnd);
+</script>
+
+</body>
+</html>
